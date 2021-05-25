@@ -12,16 +12,15 @@ dotenv.config();
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+
+const PORT = process.env.PORT || 8000;
+
 app.use('/posts',postRoutes);
 app.use('/users',userRoutes)
 
 app.get('/',(req,res)=>{
   res.send('Hello to your Moments API');
 })
-
-// const CONNECTION_URL = "mongodb+srv://moments:moments123@cluster0.jtzcq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-
-const PORT = process.env.PORT || 8000;
 
 mongoose
   .connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
