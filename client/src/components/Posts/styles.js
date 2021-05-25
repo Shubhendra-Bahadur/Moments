@@ -11,4 +11,8 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
+  loading:{
+    padding: '11px',
+    textAlign: 'center',
+  }
 }));

@@ -49,4 +49,10 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  creatorName:{
+    display:'flex',
+    flexWrap:'wrap',
+    maxWidth:'65%',
+    lineHeight:'1.2'
+  }
 });

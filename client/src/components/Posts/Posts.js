@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, CircularProgress } from "@material-ui/core";
+import { Grid, CircularProgress,Paper, Typography} from "@material-ui/core";
 import Post from "./Post/Post";
 import makeStyles from "./styles";
 import { useSelector } from "react-redux";
@@ -9,7 +9,10 @@ function Posts({setCurrentId}) {
   const posts = useSelector((state) => state.posts);
 
   return !posts.length ? (
-    <CircularProgress />
+    <Paper className={classes.paper} >
+      <Typography variant="h6" align="center">No moments present at this time from around the world</Typography>
+      <div className={classes.loading} ><CircularProgress></CircularProgress></div>
+      </Paper>
   ) : (
     <Grid
       className={classes.container}
