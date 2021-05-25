@@ -44,5 +44,11 @@ export default makeStyles((theme) => ({
     appBar: {
       flexDirection: "column",
     },
+    profile:{
+      flexDirection:"column",
+      textAlign:'center',
+      alignItems:'center',
+      justifyContent:'center',
+    }
   }
 }));

@@ -5,7 +5,7 @@ import Moments from "../../images/Moments.png";
 import makeStyles from "./styles";
 import {useDispatch} from 'react-redux';
 import decode from 'jwt-decode';
-import { errorToast, successToast } from "../Toastify/Tostify";
+import { errorToast} from "../Toastify/Tostify";
 
 
 function Navbar() {
@@ -52,7 +52,9 @@ function Navbar() {
             <div className={classes.profile}>
               <Avatar className={classes.purple} alt={user?.result?.name} src={user?.result?.imageUrl}>{user?.result?.name.charAt(0)}</Avatar>
               <Typography className={classes.userName} variant="h6">{user?.result?.name}</Typography>
+              <div>
               <Button variant="contained" className={classes.logout} color="secondary" onClick={handleLogout}>Logout</Button>
+              </div>
             </div>
         ):(
             <Button component={Link} to='/auth' variant="contained" color="primary">Sign In</Button>
