@@ -6,6 +6,7 @@ import {
   DELETE,
   LIKE,
 } from "../constants/actionTypes";
+import { errorToast, successToast } from "../components/Toastify/Tostify";
 
 export const getPosts = () => async (dispatch) => {
   try {
@@ -25,8 +26,10 @@ export const createPost = (post) => async (dispatch) => {
   try {
     const { data } = await api.createPost(post);
     dispatch({ type: CREATE, payload: data });
+    successToast('Moment created')
   } catch (error) {
     console.log("createPost error", error);
+    errorToast('Something went wrong moment creation')
   }
 };
 
@@ -52,7 +55,10 @@ export const deletePost = (id, post) => async (dispatch) => {
   try {
     await api.deletePost(id);
     dispatch({ type: DELETE, payload: id });
+    successToast('Deleted Succesfully');
+    
   } catch (error) {
     console.log("error deletePost", error);
+    errorToast('Error in deleting moment');
   }
 };

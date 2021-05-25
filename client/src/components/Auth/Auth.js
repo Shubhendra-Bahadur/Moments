@@ -14,8 +14,8 @@ import { GoogleLogin } from "react-google-login";
 import Icon from "./icon";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {signup,signin} from '../../actions/auth';
-
+import { signup, signin } from "../../actions/auth";
+import { errorToast, successToast } from "../Toastify/Tostify";
 const initialState = {
   firstname: "",
   lastname: "",
@@ -33,16 +33,17 @@ function Auth() {
   const [formData, setFormData] = useState(initialState);
 
   const handleSubmit = (e) => {
-      e.preventDefault();
-      if(isSignUp){
-        dispatch(signup(formData,history));
-      }else{
-        dispatch(signin(formData,history));
-      }
+    e.preventDefault();
+    if (isSignUp) {
+      
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
   };
 
   const handleChange = (e) => {
-    setFormData({...formData,[e.target.name]:e.target.value})
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleShowPassword = () =>
@@ -60,14 +61,17 @@ function Auth() {
     try {
       dispatch({ type: "AUTH", data: { result, token } });
       history.push("/");
+      successToast("Sign In Successfully");
     } catch (error) {
       console.log("googleSuccess", error);
+      successToast("Sign In Successfully");
     }
   };
 
   const googleFailure = (error) => {
     console.log(error);
     console.log("Google Sign In was unsuccesful try agin later");
+    errorToast("Something went wrong try again or try after sometime");
   };
 
   return (

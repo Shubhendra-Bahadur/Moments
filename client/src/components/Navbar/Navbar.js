@@ -5,11 +5,13 @@ import Moments from "../../images/Moments.png";
 import makeStyles from "./styles";
 import {useDispatch} from 'react-redux';
 import decode from 'jwt-decode';
+import { errorToast, successToast } from "../Toastify/Tostify";
 
 
 function Navbar() {
   const classes = makeStyles();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
   const dispatch=useDispatch();
   const history=useHistory();
   const location=useLocation();
@@ -21,13 +23,15 @@ function Navbar() {
       if(decodedToken.exp*1000<new Date().getTime()) handleLogout();
     }
 
-    setUser(JSON.parse(localStorage.getItem('profile')))
+    setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location])
 
   const handleLogout=()=>{
       dispatch({type:'LOGOUT'})
       history.push('/');
       setUser(null);
+      errorToast('Logged out Successfully');
+      
   }
   
   return (
@@ -46,8 +50,8 @@ function Navbar() {
       <Toolbar className={classes.toolbar}>
         {user?(
             <div className={classes.profile}>
-              <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar>
-              <Typography className={classes.userName} variant="h6">{user.result.name}</Typography>
+              <Avatar className={classes.purple} alt={user?.result?.name} src={user?.result?.imageUrl}>{user?.result?.name.charAt(0)}</Avatar>
+              <Typography className={classes.userName} variant="h6">{user?.result?.name}</Typography>
               <Button variant="contained" className={classes.logout} color="secondary" onClick={handleLogout}>Logout</Button>
             </div>
         ):(

@@ -1,5 +1,6 @@
 import { AUTH } from "../constants/actionTypes";
 import * as api from "../api";
+import { errorToast, successToast } from "../components/Toastify/Tostify";
 
 export const signup = (formData, history) => async (dispatch) => {
   try {
@@ -7,22 +8,26 @@ export const signup = (formData, history) => async (dispatch) => {
     dispatch({ type:AUTH, data });
 
     history.push("/");
+    successToast('Login Succesfully');
   } catch (error) {
     console.log(error);
+    if (formData.password !== formData.confirmPassword) {
+      errorToast("password not matching");
+    }else{
+      errorToast("Email Id already registered");
+    }
   }
 };
 
 export const signin = (formData, history) => async (dispatch) => {
   try {
-    console.log('hj',formData);
-
-    
     const { data } = await api.signin(formData);
-    console.log('hj1',data);
     dispatch({ type: AUTH, data });
-
+    
     history.push("/");
+    successToast('Login Succesfully');
   } catch (error) {
     console.log(error);
+    errorToast('Invalid Credentials');
   }
 };

@@ -40,7 +40,7 @@ export const signUp = async (req, res) => {
     }
 
     if (password !== confirmPassword) {
-      return res.json(401).json({ message: "password don't match" });
+      return res.status(401).json({ message: "password don't match" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);

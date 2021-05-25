@@ -14,9 +14,9 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 const PORT = process.env.PORT || 8000;
-
 app.use('/posts',postRoutes);
 app.use('/users',userRoutes)
+
 
 app.get('/',(req,res)=>{
   res.send('Hello to your Moments API');
