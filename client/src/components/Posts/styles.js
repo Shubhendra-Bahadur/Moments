@@ -14,5 +14,10 @@ export default makeStyles((theme) => ({
   loading:{
     padding: '11px',
     textAlign: 'center',
+  },
+  [theme.breakpoints.down('sm')]: {
+    container: {
+      flexDirection: 'column-reverse',
+    },
   }
 }));
