@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   mainContainer: {
     display: 'flex',
+    flexDirection:'row-reverse',
     alignItems: 'center',
   },
   smMargin: {
@@ -15,9 +16,5 @@ export default makeStyles((theme) => ({
     padding: '11px',
     textAlign: 'center',
   },
-  [theme.breakpoints.down('sm')]: {
-    container: {
-      flexDirection: 'column-reverse',
-    },
-  }
+  
 }));
