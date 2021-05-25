@@ -49,6 +49,12 @@ export default makeStyles((theme) => ({
       textAlign:'center',
       alignItems:'center',
       justifyContent:'center',
+    },
+    signin:{
+      width:'100%',
+      display: 'flex',
+      alignItems:'center',
+      justifyContent:'center',
     }
   }
 }));
