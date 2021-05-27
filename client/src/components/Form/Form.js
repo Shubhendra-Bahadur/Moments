@@ -3,11 +3,13 @@ import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../actions/posts";
+import {useHistory} from 'react-router-dom';
 
 import makeStyles from "./styles";
 
 function Form({ currentId, setCurrentId }) {
   const classes = makeStyles();
+  const history=useHistory();
   const [postData, setPostData] = useState({
     title: "",
     message: "",
@@ -16,19 +18,18 @@ function Form({ currentId, setCurrentId }) {
   });
 
   const post = useSelector((state) =>
-    currentId ? state.posts.find((post) => post._id === currentId) : null
+    currentId ? state.posts.posts.find((post) => post._id === currentId) : null
   );
   const dispatch = useDispatch();
   const user=JSON.parse(localStorage.getItem('profile'));
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (currentId) {
       dispatch(updatePost(currentId, {...postData,name:user?.result?.name}));
       clear();
     } else {
-      dispatch(createPost({...postData,name:user?.result?.name}));
+      dispatch(createPost({...postData,name:user?.result?.name},history));
       clear();
     }
   };
@@ -56,7 +57,7 @@ function Form({ currentId, setCurrentId }) {
   }
   return (
     <div>
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} elevation={6}>
         <form
           noValidate
           autoComplete="off"

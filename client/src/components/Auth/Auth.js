@@ -34,8 +34,8 @@ function Auth() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isSignUp) {
-      
+    history.push('/auth');
+    if (isSignUp) {   
       dispatch(signup(formData, history));
     } else {
       dispatch(signin(formData, history));
